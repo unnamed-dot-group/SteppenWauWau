@@ -12,12 +12,12 @@ export default async function messageReward(discordUserId) {
     new QueryCommand({
       TableName: "steppenwauwau-transactions",
       KeyConditionExpression:
-        "From = :from AND To = :to AND Currency = :currency AND Epoch > :epoch",
+        "Source = :source AND Target = :target AND Currency = :currency AND Epoch > :epoch",
       ExpressionAttributeValues: {
-        ":from": {
+        ":source": {
           S: "system",
         },
-        ":to": {
+        ":target": {
           S: discordUserId,
         },
         ":currency": {
@@ -38,7 +38,9 @@ export default async function messageReward(discordUserId) {
       1,
       "message reward"
     );
+
     await addMemberMundaneCurrency(message.author.id, 1, "message sent");
+
     log(
       `Rewarding ${message.author.username}#${message.author.discriminator} with 1 Mundane Currency for sending a message`
     );

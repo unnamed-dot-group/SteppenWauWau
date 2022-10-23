@@ -5,8 +5,14 @@ const dynamodb = new DynamoDBClient({
   region: "eu-west-1",
 });
 
-export default async function transaction(from, to, currency, value, reason) {
-  log(`Transaction from ${from} to ${to} for ${value} ${currency}`);
+export default async function transaction(
+  source,
+  target,
+  currency,
+  value,
+  reason
+) {
+  log(`Transaction from ${source} to ${target} for ${value} ${currency}`);
 
   await dynamodb.send(
     new PutItemCommand({
@@ -15,11 +21,11 @@ export default async function transaction(from, to, currency, value, reason) {
         Epoch: {
           S: Date.now().toString(),
         },
-        From: {
-          S: from,
+        Origin: {
+          S: source,
         },
-        To: {
-          S: to,
+        Target: {
+          S: target,
         },
         Currency: {
           S: currency,
