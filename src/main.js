@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
 import ActivityType from "./helpers/ActivityType.js";
-import debug from "./commands/debug.js";
+import profile from "./commands/profile.js";
 import addMemberCash from "./lib/addMemberCash.js";
 import log from "./lib/log.js";
 import setRandomActivity from "./lib/setRandomActivity.js";
@@ -40,7 +40,7 @@ client.on("guildMemberAdd", async (member) => {
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  if (interaction.commandName === "debug") await debug(interaction);
+  if (interaction.commandName === "profile") await profile(interaction);
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);

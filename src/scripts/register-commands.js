@@ -3,8 +3,8 @@ import { REST, Routes } from "discord.js";
 
 const commands = [
   {
-    name: "debug",
-    description: "Useless information for dumb developers",
+    name: "profile",
+    description: "View your profile",
   },
 ];
 
