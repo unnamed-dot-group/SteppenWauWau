@@ -4,7 +4,7 @@ export default async function setRandomActivity(discordClient) {
   const activities = [
     {
       type: "LISTENING",
-      name: "to enemy comms",
+      name: "enemy comms",
     },
   ];
 
