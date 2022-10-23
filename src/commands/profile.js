@@ -22,14 +22,14 @@ export default async function profile(interaction) {
 
   console.log(`url: ${interaction.user.avatarURL()}`);
 
-  const cash = result.Item.Cash.N;
+  const mundane_currency = result.Item.MundaneCurrency.N;
 
   const embed = new EmbedBuilder();
   embed.setTitle(`${interaction.user.username}'s Profile`);
   embed.setThumbnail(interaction.user.avatarURL());
   embed.addFields({
-    name: "Cash",
-    value: cash,
+    name: "MundaneCurrency",
+    value: mundane_currency,
   });
 
   await interaction.reply({ embeds: [embed] });

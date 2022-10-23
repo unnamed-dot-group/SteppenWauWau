@@ -2,7 +2,7 @@ import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
 import ActivityType from "./helpers/ActivityType.js";
 import profile from "./commands/profile.js";
-import addMemberCash from "./lib/addMemberCash.js";
+import addMemberMundaneCurrency from "./lib/addMemberMundaneCurrency.js";
 import log from "./lib/log.js";
 import setRandomActivity from "./lib/setRandomActivity.js";
 
@@ -27,7 +27,7 @@ client.on("ready", async () => {
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  await addMemberCash(message.author.id, 1, "message sent");
+  await addMemberMundaneCurrency(message.author.id, 1, "message sent");
 });
 
 client.on("guildMemberAdd", async (member) => {

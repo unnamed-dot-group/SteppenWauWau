@@ -5,8 +5,12 @@ const dynamodb = new DynamoDBClient({
   region: "eu-west-1",
 });
 
-export default async function addMemberCash(discordUserId, value, reason) {
-  log(`Adding ${value} to ${discordUserId} for ${reason}`);
+export default async function addMemberMundaneCurrency(
+  discordUserId,
+  value,
+  reason
+) {
+  log(`Adding ${value} mundane currency to ${discordUserId} for ${reason}`);
 
   await dynamodb.send(
     new UpdateItemCommand({
@@ -16,7 +20,7 @@ export default async function addMemberCash(discordUserId, value, reason) {
           S: discordUserId,
         },
       },
-      UpdateExpression: "ADD Cash :value",
+      UpdateExpression: "ADD MundaneCurrency :value",
       ExpressionAttributeValues: {
         ":value": {
           N: value.toString(),
