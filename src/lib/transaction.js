@@ -16,20 +16,21 @@ export default async function transaction(from, to, currency, value, reason) {
           S: Date.now().toString(),
         },
         From: {
-            S: from,
+          S: from,
         },
         To: {
-            S: to,
+          S: to,
         },
         Currency: {
-            S: currency,
+          S: currency,
         },
         Value: {
-            N: value.toString(),
+          N: value.toString(),
         },
         Reason: {
-            S: reason,
+          S: reason,
         },
       },
     })
   );
+}

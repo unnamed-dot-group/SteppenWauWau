@@ -39,5 +39,12 @@ export default async function messageReward(discordUserId) {
       "message reward"
     );
     await addMemberMundaneCurrency(message.author.id, 1, "message sent");
+    log(
+      `Rewarding ${message.author.username}#${message.author.discriminator} with 1 Mundane Currency for sending a message`
+    );
+  } else {
+    log(
+      `User ${discordUserId} already received a reward in the last 5 minutes`
+    );
   }
 }

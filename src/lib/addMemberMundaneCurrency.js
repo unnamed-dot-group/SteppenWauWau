@@ -10,8 +10,6 @@ export default async function addMemberMundaneCurrency(
   value,
   reason
 ) {
-  log(`Adding ${value} mundane currency to ${discordUserId} for ${reason}`);
-
   await dynamodb.send(
     new UpdateItemCommand({
       TableName: "steppenwauwau-member-profiles",
