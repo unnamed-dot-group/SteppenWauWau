@@ -1,16 +1,16 @@
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
-import log from "./log.js";
+import { LogEvent } from "./events.js";
 
 const dynamodb = new DynamoDBClient({
   region: "eu-west-1",
 });
 
-export default async function addMemberMundaneCurrency(
-  discordUserId,
-  value,
-  reason
-) {
-  log(`Adding ${value} mundane currency to ${discordUserId} for ${reason}`);
+export default async function updateMemberCurrency(discordUserId, value) {
+  LogEvent({
+    type: "updateMemberCurrency",
+    discordUserId,
+    value,
+  });
 
   await dynamodb.send(
     new UpdateItemCommand({

@@ -60,8 +60,8 @@ resource "aws_dynamodb_table" "steppenwauwau-members" {
   }
 }
 
-resource "aws_dynamodb_table" "steppenwauwau-logs" {
-  name         = "steppenwauwau-logs"
+resource "aws_dynamodb_table" "steppenwauwau-events" {
+  name         = "steppenwauwau-events"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "Epoch"
 
