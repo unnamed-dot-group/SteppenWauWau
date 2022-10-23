@@ -17,6 +17,13 @@ client.on("messageCreate", async (message) => {
   addMemberCash(message.author.id, 1);
 });
 
+client.on("guildMemberAdd", async (member) => {
+  // send welcome message
+  client.channels.fetch(process.env.WELCOME_CHANNEL_ID).then((channel) => {
+    channel.send(`Welcome to the server, ${member}!`);
+  });
+});
+
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
