@@ -53,10 +53,10 @@ resource "aws_iam_user_policy" "steppenwauwau" {
 resource "aws_dynamodb_table" "steppenwauwau-member-profiles" {
   name         = "steppenwauwau-member-profiles"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "DiscordId"
+  hash_key     = "DiscordUserId"
 
   attribute {
-    name = "DiscordId"
+    name = "DiscordUserId"
     type = "S"
   }
 }
