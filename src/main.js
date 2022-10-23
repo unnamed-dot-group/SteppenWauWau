@@ -5,7 +5,6 @@ import profile from "./commands/profile.js";
 import log from "./lib/log.js";
 import setRandomActivity from "./lib/setRandomActivity.js";
 import messageReward from "./lib/messageReward.js";
-// import { getItem } from "./lib/dynamodb.js";
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
@@ -20,8 +19,6 @@ const client = new Client({
 });
 
 client.on("ready", async () => {
-  // console.log(await getItem("members", "723361818940276736"));
-
   log(`Logged in as ${client.user.tag}!`);
 
   await setRandomActivity(client);
