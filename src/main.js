@@ -2,9 +2,9 @@ import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
 import ActivityType from "./helpers/ActivityType.js";
 import profile from "./commands/profile.js";
-import addMemberMundaneCurrency from "./lib/addMemberMundaneCurrency.js";
 import log from "./lib/log.js";
 import setRandomActivity from "./lib/setRandomActivity.js";
+import messageReward from "./lib/messageReward.js";
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
@@ -27,7 +27,7 @@ client.on("ready", async () => {
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  await addMemberMundaneCurrency(message.author.id, 1, "message sent");
+  await messageReward(message.author.id);
 });
 
 client.on("guildMemberAdd", async (member) => {
