@@ -9,6 +9,6 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node src/main.js"
+    "start": "node src/scripts/register-commands.js && node src/main.js"
   }
 }
