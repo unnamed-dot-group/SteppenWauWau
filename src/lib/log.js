@@ -12,7 +12,7 @@ export default async function log(message, level = "log") {
       TableName: "steppenwauwau-logs",
       Key: {
         Epoch: {
-          S: new Date().now(),
+          S: Date.now().toString(),
         },
         Level: {
           S: level,
