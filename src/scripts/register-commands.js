@@ -7,14 +7,19 @@ const commands = [
   },
 ];
 
-const rest = new REST({ version: "10" }).setToken(DISCORD_BOT_TOKEN);
+const rest = new REST({ version: "10" }).setToken(
+  process.env.DISCORD_BOT_TOKEN
+);
 
 (async () => {
   try {
     console.log("Started refreshing application (/) commands.");
 
     await rest.put(
-      Routes.applicationGuildCommands(DISCORD_APPLICATION_ID, DISCORD_GUILD_ID),
+      Routes.applicationGuildCommands(
+        process.env.DISCORD_APPLICATION_ID,
+        process.env.DISCORD_GUILD_ID
+      ),
       {
         body: commands,
       }
