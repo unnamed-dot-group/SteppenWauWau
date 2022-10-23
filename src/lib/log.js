@@ -10,7 +10,7 @@ export default async function log(message, level = "log") {
   await dynamodb.send(
     new PutItemCommand({
       TableName: "steppenwauwau-logs",
-      Key: {
+      Item: {
         Epoch: {
           S: Date.now().toString(),
         },
