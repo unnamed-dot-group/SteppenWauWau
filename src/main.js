@@ -19,7 +19,7 @@ const client = new Client({
 });
 
 client.on("ready", async () => {
-  LogEvent({
+  await LogEvent({
     type: "ready",
   });
 

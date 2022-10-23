@@ -11,7 +11,7 @@ export default async function setRandomActivity(discordClient) {
 
   const activity = activities[Math.floor(Math.random() * activities.length)];
 
-  LogEvent({
+  await LogEvent({
     type: "setRandomActivity",
     activity,
   });

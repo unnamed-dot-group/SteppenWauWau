@@ -7,7 +7,7 @@ const dynamodb = new DynamoDBClient({
 });
 
 export default async function profile(interaction) {
-  LogEvent({
+  await LogEvent({
     type: "profileGet",
     discordUserId: interaction.user.id,
   });

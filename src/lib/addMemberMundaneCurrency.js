@@ -6,7 +6,7 @@ const dynamodb = new DynamoDBClient({
 });
 
 export default async function updateMemberCurrency(discordUserId, value) {
-  LogEvent({
+  await LogEvent({
     type: "updateMemberCurrency",
     discordUserId,
     value,
