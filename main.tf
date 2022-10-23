@@ -28,6 +28,10 @@ provider "aws" {
   secret_key = var.aws_secret_key
 }
 
+resource "aws_iam_user" "steppenwauwau" {
+  name = "steppenwauwau"
+}
+
 resource "aws_iam_user_policy" "steppenwauwau" {
   user = aws_iam_user.steppenwauwau.name
 
