@@ -28,7 +28,7 @@ export default async function profile(interaction) {
   embed.setTitle(`${interaction.user.username}'s Profile`);
   embed.setThumbnail(interaction.user.avatarURL());
   embed.addFields({
-    name: "MundaneCurrency",
+    name: "🥔 Potatoes",
     value: mundane_currency,
   });
 
