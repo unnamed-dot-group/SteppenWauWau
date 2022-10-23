@@ -1,21 +1,33 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
+import ActivityType from "./helpers/ActivityType.js";
 import debug from "./commands/debug.js";
 import addMemberCash from "./lib/addMemberCash.js";
 import log from "./lib/log.js";
+import setRandomActivity from "./lib/setRandomActivity.js";
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+  presence: {
+    activities: [
+      {
+        type: ActivityType.LISTENING,
+        name: "my boot logs",
+      },
+    ],
+  },
 });
 
 client.on("ready", async () => {
   log(`Logged in as ${client.user.tag}!`);
+
+  await setRandomActivity(client);
 });
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  addMemberCash(message.author.id, 1, "message sent");
+  await addMemberCash(message.author.id, 1, "message sent");
 });
 
 client.on("guildMemberAdd", async (member) => {
