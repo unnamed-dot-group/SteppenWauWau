@@ -60,3 +60,14 @@ resource "aws_dynamodb_table" "steppenwauwau-member-profiles" {
     type = "S"
   }
 }
+
+resource "aws_dynamodb_table" "steppenwauwau-logs" {
+  name         = "steppenwauwau-logs"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "Epoch"
+
+  attribute {
+    name = "Epoch"
+    type = "S"
+  }
+}
