@@ -1,19 +1,19 @@
 import "dotenv/config";
-import { Client, Intents } from "discord.js";
-import debug from "./commands/debug";
+import { Client, GatewayIntentBits } from "discord.js";
+import debug from "./commands/debug.js";
 
-const discord = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
 });
 
-discord.on("ready", async () => {
-  console.log(`Logged in as ${discord.user.tag}!`);
+client.on("ready", async () => {
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-discord.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) return;
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === "debug") await debug(interaction);
 });
 
-discord.login(process.env.DISCORD_BOT_TOKEN);
+client.login(process.env.DISCORD_BOT_TOKEN);
