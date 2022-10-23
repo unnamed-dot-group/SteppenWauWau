@@ -1,30 +1,11 @@
-import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
-import { LogEvent } from "../lib/events.js";
+import { getItem } from "../controllers/DynamoDB.js";
 import { EmbedBuilder } from "discord.js";
 
-const dynamodb = new DynamoDBClient({
-  region: "eu-west-1",
-});
-
 export default async function profile(interaction) {
-  await LogEvent({
-    type: "profileGet",
-    discordUserId: interaction.user.id,
-  });
-
-  const result = await dynamodb.send(
-    new GetItemCommand({
-      TableName: "steppenwauwau-member-profiles",
-      Key: {
-        DiscordUserId: {
-          S: interaction.user.id,
-        },
-      },
-    })
-  );
+  const result = await getItem("steppenwauwau-members", interaction.user.id);
 
   // if user has no profile, tell them
-  if (!result.Item)
+  if (!result)
     return interaction.reply({
       content: "You have no profile yet. Be active in the server to get one!",
       ephemeral: true,
@@ -33,7 +14,7 @@ export default async function profile(interaction) {
   let mundane_currency = 0;
 
   if (result.Item.MundaneCurrency) {
-    mundane_currency = result.Item.MundaneCurrency.N;
+    mundane_currency = result;
   }
 
   const embed = new EmbedBuilder();

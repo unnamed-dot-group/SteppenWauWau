@@ -3,10 +3,12 @@ import {
   DescribeTableCommand,
   UpdateItemCommand,
   PutItemCommand,
+  GetItemCommand,
 } from "@aws-sdk/client-dynamodb";
+import config from "../config.js";
 
 const dynamodb = new DynamoDBClient({
-  region: "eu-west-1",
+  region: config.aws.region,
 });
 
 export async function getItem(table, hashkey) {

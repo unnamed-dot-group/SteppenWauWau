@@ -2,7 +2,6 @@ import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
 import ActivityType from "./helpers/ActivityType.js";
 import profile from "./commands/profile.js";
-import { LogEvent } from "./lib/events.js";
 import setRandomActivity from "./lib/setRandomActivity.js";
 import addMemberMundaneCurrency from "./lib/addMemberMundaneCurrency.js";
 
@@ -11,7 +10,7 @@ const client = new Client({
   presence: {
     activities: [
       {
-        type: ActivityType.LISTENING,
+        type: ActivityType.WATCHING,
         name: "my boot logs",
       },
     ],
@@ -19,11 +18,7 @@ const client = new Client({
 });
 
 client.on("ready", async () => {
-  await LogEvent({
-    type: "ready",
-  });
-
-  await setRandomActivity(client);
+  mainLoop();
 });
 
 client.on("messageCreate", async (message) => {
@@ -39,3 +34,8 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
+
+function mainLoop() {
+  setRandomActivity(client);
+  setTimeout(mainLoop, 1000 * 60 * 5);
+}

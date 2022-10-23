@@ -1,17 +1,11 @@
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
-import { LogEvent } from "./events.js";
+import config from "../config.js";
 
 const dynamodb = new DynamoDBClient({
-  region: "eu-west-1",
+  region: config.aws.region,
 });
 
 export default async function updateMemberCurrency(discordUserId, value) {
-  await LogEvent({
-    type: "updateMemberCurrency",
-    discordUserId,
-    value,
-  });
-
   await dynamodb.send(
     new UpdateItemCommand({
       TableName: "steppenwauwau-members",
