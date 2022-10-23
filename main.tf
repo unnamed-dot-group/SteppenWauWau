@@ -40,11 +40,13 @@ resource "aws_iam_user_policy" "steppenwauwau" {
     Statement = [
       {
         Action = [
-          "dynamodb:GetItem",
-          "dynamodb:UpdateItem",
+          "dynamodb:*",
         ]
-        Effect   = "Allow"
-        Resource = "*"
+        Effect = "Allow"
+        Resource = [
+          aws_dynamodb_table.steppenwauwau-member-profiles.arn,
+          aws_dynamodb_table.steppenwauwau-logs.arn,
+        ]
       },
     ]
   })

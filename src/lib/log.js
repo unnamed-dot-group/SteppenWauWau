@@ -1,4 +1,4 @@
-import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 
 const dynamodb = new DynamoDBClient({
   region: "eu-west-1",
