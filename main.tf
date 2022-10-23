@@ -73,14 +73,3 @@ resource "aws_dynamodb_table" "steppenwauwau-logs" {
     type = "S"
   }
 }
-
-resource "aws_dynamodb_table" "steppenwauwau-transactions" {
-  name         = "steppenwauwau-transactions"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "Epoch"
-
-  attribute {
-    name = "Epoch"
-    type = "S"
-  }
-}
