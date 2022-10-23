@@ -1,5 +1,5 @@
 import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
-import log from "../lib/log.js";
+import { LogEvent } from "../lib/events.js";
 import { EmbedBuilder } from "discord.js";
 
 const dynamodb = new DynamoDBClient({
@@ -7,7 +7,10 @@ const dynamodb = new DynamoDBClient({
 });
 
 export default async function profile(interaction) {
-  log(`Showing profile for ${interaction.user.id}`);
+  LogEvent({
+    type: "profileGet",
+    discordUserId: interaction.user.id,
+  });
 
   const result = await dynamodb.send(
     new GetItemCommand({
@@ -26,8 +29,6 @@ export default async function profile(interaction) {
       content: "You have no profile yet. Be active in the server to get one!",
       ephemeral: true,
     });
-
-  console.log(`url: ${interaction.user.avatarURL()}`);
 
   let mundane_currency = 0;
 

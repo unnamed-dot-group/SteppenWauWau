@@ -1,5 +1,5 @@
 import ActivityType from "../helpers/ActivityType.js";
-import log from "./log.js";
+import { LogEvent } from "./events.js";
 
 export default async function setRandomActivity(discordClient) {
   const activities = [
@@ -11,7 +11,10 @@ export default async function setRandomActivity(discordClient) {
 
   const activity = activities[Math.floor(Math.random() * activities.length)];
 
-  log(`Setting activity to "${activity.type} ${activity.name}"`);
+  LogEvent({
+    type: "setRandomActivity",
+    activity,
+  });
 
   await discordClient.user.setActivity(activity.name, {
     type: ActivityType[activity.type],
