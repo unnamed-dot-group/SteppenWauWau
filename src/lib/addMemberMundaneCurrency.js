@@ -14,7 +14,7 @@ export default async function addMemberMundaneCurrency(
 
   await dynamodb.send(
     new UpdateItemCommand({
-      TableName: "steppenwauwau-member-profiles",
+      TableName: "steppenwauwau-members",
       Key: {
         DiscordUserId: {
           S: discordUserId,

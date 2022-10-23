@@ -42,18 +42,15 @@ resource "aws_iam_user_policy" "steppenwauwau" {
         Action = [
           "dynamodb:*",
         ]
-        Effect = "Allow"
-        Resource = [
-          aws_dynamodb_table.steppenwauwau-member-profiles.arn,
-          aws_dynamodb_table.steppenwauwau-logs.arn,
-        ]
+        Effect   = "Allow"
+        Resource = "*"
       },
     ]
   })
 }
 
-resource "aws_dynamodb_table" "steppenwauwau-member-profiles" {
-  name         = "steppenwauwau-member-profiles"
+resource "aws_dynamodb_table" "steppenwauwau-members" {
+  name         = "steppenwauwau-members"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "DiscordUserId"
 
